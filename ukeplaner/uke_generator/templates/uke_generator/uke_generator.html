@@ -1,2 +1,125 @@
 {% extends 'uke_generator/base.html' %}
 
+{% block content %}
+
+<div class="create-schedule">
+    <div class="menu">
+        <p class="menu__label">Linje</p>
+        <input type="text">
+        <p class="menu__label">Ferier og fridager</p>
+        <div class="menu__table-container">
+            <p class="menu__label">Lærer</p>
+            <p class="menu__label">Klasserom</p>
+            ---
+        </div>
+    </div>
+    <div class="preview-container">
+        <table class="schedule-preview">
+            <tr class="schedule-preview__info-row">
+                <td class="schedule-preview__info-cell" colspan="6">
+                    Info for uken:
+                </td>
+            </tr>
+            <tr class="schedule-preview__header-row">
+                <th></th>
+                <th class="schedule-preview__header-cell">Mandag dd.mm</th>
+                <th class="schedule-preview__header-cell">Tirsdag dd.mm</th>
+                <th class="schedule-preview__header-cell">Onsdag dd.mm</th>
+                <th class="schedule-preview__header-cell">Torsdag dd.mm</th>
+                <th class="schedule-preview__header-cell">Fredag dd.mm</th>
+            </tr>
+            <tr class="schedule-preview__first-row">
+                <td>08:10-08:55</td>
+                <td class="schedule-preview__period schedule-preview__period--first"><button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">1. Time</button></td>
+                <td class="schedule-preview__period schedule-preview__period--first">1. Time</td>
+                <td class="schedule-preview__period schedule-preview__period--first">1. Time</td>
+                <td class="schedule-preview__period schedule-preview__period--first">1. Time</td>
+                <td class="schedule-preview__period schedule-preview__period--first">1. Time</td>
+            </tr>
+            <tr class="schedule-preview__second-row">
+                <td>08:55-09:40</td>
+                <td class="schedule-preview__period schedule-preview__period--second">2. time</td>
+                <td class="schedule-preview__period schedule-preview__period--second">2. time</td>
+                <td class="schedule-preview__period schedule-preview__period--second">2. time</td>
+                <td class="schedule-preview__period schedule-preview__period--second">2. time</td>
+                <td class="schedule-preview__period schedule-preview__period--second">2. time</td>
+            </tr>
+            <tr class="schedule-preview__recess-row">
+                <td>09:40-10:00</td>
+                <td class="schedule-preview__recess-cell" colspan="5">Pause</td>
+            </tr>
+            <tr class="schedule-preview__first-row">
+                <td>10:00-10:45</td>
+                <td class="schedule-preview__period schedule-preview__period--first">3. time</td>
+                <td class="schedule-preview__period schedule-preview__period--first">3. time</td>
+                <td class="schedule-preview__period schedule-preview__period--first">3. time</td>
+                <td class="schedule-preview__period schedule-preview__period--first">3. time</td>
+                <td class="schedule-preview__period schedule-preview__period--first">3. time</td>
+            </tr>
+            <tr class="schedule-preview__second-row">
+                <td>10:45-11:30</td>
+                <td class="schedule-preview__period schedule-preview__period--second">4. time</td>
+                <td class="schedule-preview__period schedule-preview__period--second">4. time</td>
+                <td class="schedule-preview__period schedule-preview__period--second">4. time</td>
+                <td class="schedule-preview__period schedule-preview__period--second">4. time</td>
+                <td class="schedule-preview__period schedule-preview__period--second">4. time</td>
+            </tr>
+            <tr class="schedule-preview__recess-row">
+                <td>11:30-12:00</td>
+                <td class="schedule-preview__recess-cell" colspan="5">Lunsjpause</td>
+            </tr>
+            <tr class="schedule-preview__first-row">
+                <td>12:00-12:45</td>
+                <td class="schedule-preview__period schedule-preview__period--first">5. time</td>
+                <td class="schedule-preview__period schedule-preview__period--first">5. time</td>
+                <td class="schedule-preview__period schedule-preview__period--first">5. time</td>
+                <td class="schedule-preview__period schedule-preview__period--first">5. time</td>
+                <td class="schedule-preview__period schedule-preview__period--first">5. time</td>
+            </tr>
+            <tr class="schedule-preview__second-row">
+                <td>12:45-13:30</td>
+                <td class="schedule-preview__period schedule-preview__period--second">6. time</td>
+                <td class="schedule-preview__period schedule-preview__period--second">6. time</td>
+                <td class="schedule-preview__period schedule-preview__period--second">6. time</td>
+                <td class="schedule-preview__period schedule-preview__period--second">6. time</td>
+                <td class="schedule-preview__period schedule-preview__period--second">6. time</td>
+            </tr>
+            <tr class="schedule-preview__recess-row">
+                <td>13:30-13:40</td>
+                <td class="schedule-preview__recess-cell" colspan="5">Pause</td>
+            </tr>
+            <tr class="schedule-preview__first-row">
+                <td>13:40-14:25</td>
+                <td class="schedule-preview__period schedule-preview__period--first">7. time</td>
+                <td class="schedule-preview__period schedule-preview__period--first">7. time</td>
+                <td class="schedule-preview__period schedule-preview__period--first">7. time</td>
+                <td class="schedule-preview__period schedule-preview__period--first">7. time</td>
+                <td class="schedule-preview__period schedule-preview__period--first">7. time</td>
+            </tr>
+            <tr class="schedule-preview__second-row">
+                <td>14:25-15:10</td>
+                <td class="schedule-preview__period schedule-preview__period--second">8. time</td>
+                <td class="schedule-preview__period schedule-preview__period--second">8. time</td>
+                <td class="schedule-preview__period schedule-preview__period--second">8. time</td>
+                <td class="schedule-preview__period schedule-preview__period--second">8. time</td>
+                <td class="schedule-preview__period schedule-preview__period--second">8. time</td>
+            </tr>
+        </table>
+    </div>
+    <div class="modal fade" id="exampleModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Velg fag</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    fag1
+                    fag2
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

@@ -6,12 +6,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'uke_generator/Bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'uke_generator/custom/css/main.css' %}">
     {% block title %}
     {% endblock title %}
 </head>
 <body>
     <div class="container">
-        <header class="d-flex flex-wrap py-3 text-bg-dark"><a href="#">Home</a></header>
+        <header class="d-flex flex-wrap py-3 text-bg-dark">
+            <a href="#">Home</a>
+            <a href="#">Generate</a>
+        </header>
     </div>
+    {% block content %}
+    {% endblock content %}
+    <script src="{% static 'uke_generator/Bootsrtap/js/bootstrap.bundle.js' %}"></script>
 </body>
 </html>

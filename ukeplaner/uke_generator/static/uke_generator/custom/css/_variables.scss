@@ -1,0 +1,30 @@
+// Colors
+
+$recess: #d3d3d3;
+
+$dreamscape: (
+    "sage": #c9cca1,
+    "mustard": #caa05a,
+    "rust": #ae6a47,
+    "brick": #8b4048,
+    "smoky": #543344,
+    "slate": #515262,
+    "dusty": #63787d,
+    "sea-foam": #8ea091,
+);
+
+$retrocal: (
+    "teal": #6eb8a8,
+    "forest": #2a584f,
+    "lime": #74a33f,
+    "lemon": #fcffc0,
+    "raspberry": #c6505a,
+    "eggplant": #2f142f,
+    "earth": #774448,
+    "tangerine": #ee9c5d
+);
+
+$colors: (
+    "retrocal": $retrocal,
+    "dreamscape": $dreamscape
+);

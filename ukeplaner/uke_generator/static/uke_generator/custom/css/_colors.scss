@@ -1,0 +1,7 @@
+@each $groupname, $group in $colors {
+    @each $color, $value in $group {
+        .color-#{$groupname}-#{$color} {
+            background-color: #{$value};
+        }
+    }
+}

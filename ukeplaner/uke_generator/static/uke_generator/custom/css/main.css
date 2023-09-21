@@ -1,0 +1,115 @@
+.schedule-preview {
+  table-layout: fixed;
+  margin: 10px;
+  padding: 10px;
+  width: 95%;
+  border: 1px solid #000000;
+}
+.schedule-preview__info-row {
+  height: 4rem;
+}
+.schedule-preview__info-cell {
+  vertical-align: top;
+  border: 1px solid #000000;
+}
+.schedule-preview__header-row {
+  height: 2rem;
+  text-align: center;
+}
+.schedule-preview__header-cell {
+  border: 1px solid #000000;
+}
+.schedule-preview__first-row {
+  height: 4rem;
+}
+.schedule-preview__second-row {
+  height: 4rem;
+}
+.schedule-preview__period {
+  text-align: center;
+}
+.schedule-preview__period--first {
+  border-top: 1px solid #000000;
+  border-right: 1px solid #000000;
+  border-left: 1px solid #000000;
+}
+.schedule-preview__period--second {
+  border-bottom: 1px solid #000000;
+  border-right: 1px solid #000000;
+  border-left: 1px solid #000000;
+}
+.schedule-preview__recess-row {
+  height: 2rem;
+}
+.schedule-preview__recess-cell {
+  text-align: center;
+  background-color: #d3d3d3;
+  border-left: 1px solid #000000;
+  border-right: 1px solid #000000;
+}
+
+.color-retrocal-teal {
+  background-color: #6eb8a8;
+}
+
+.color-retrocal-forest {
+  background-color: #2a584f;
+}
+
+.color-retrocal-lime {
+  background-color: #74a33f;
+}
+
+.color-retrocal-lemon {
+  background-color: #fcffc0;
+}
+
+.color-retrocal-raspberry {
+  background-color: #c6505a;
+}
+
+.color-retrocal-eggplant {
+  background-color: #2f142f;
+}
+
+.color-retrocal-earth {
+  background-color: #774448;
+}
+
+.color-retrocal-tangerine {
+  background-color: #ee9c5d;
+}
+
+.color-dreamscape-sage {
+  background-color: #c9cca1;
+}
+
+.color-dreamscape-mustard {
+  background-color: #caa05a;
+}
+
+.color-dreamscape-rust {
+  background-color: #ae6a47;
+}
+
+.color-dreamscape-brick {
+  background-color: #8b4048;
+}
+
+.color-dreamscape-smoky {
+  background-color: #543344;
+}
+
+.color-dreamscape-slate {
+  background-color: #515262;
+}
+
+.color-dreamscape-dusty {
+  background-color: #63787d;
+}
+
+.color-dreamscape-sea-foam {
+  background-color: #8ea091;
+}
+
+/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,62 @@
+.schedule-preview {
+    table-layout: fixed;
+    margin: 10px;
+    padding: 10px;
+    width: 95%;
+    border: 1px solid #000000;
+
+    &__info-row {
+        height: 4rem;
+    }
+
+    &__info-cell {
+        vertical-align: top;
+        border: 1px solid #000000;
+    }
+
+    &__header-row {
+        height: 2rem;
+        text-align: center;
+    }
+
+    &__header-cell {
+        border: 1px solid #000000;
+    }
+
+    &__first-row {
+        height: 4rem;
+    }
+
+    &__second-row {
+        height: 4rem;
+    }
+
+    &__period {
+        text-align: center;
+
+        &--first {
+            border-top: 1px solid #000000;
+            border-right: 1px solid #000000;
+            border-left: 1px solid #000000;
+        }
+
+        &--second {
+            border-bottom: 1px solid #000000;
+            border-right: 1px solid #000000;
+            border-left: 1px solid #000000;
+        }
+    }
+
+    &__recess-row {
+        height: 2rem;
+    }
+
+    &__recess-cell {
+        text-align: center;
+        background-color: #{$recess};
+        border-left: 1px solid #000000;
+        border-right: 1px solid #000000;
+    }
+
+    
+}
