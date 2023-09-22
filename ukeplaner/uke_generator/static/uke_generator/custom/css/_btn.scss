@@ -1,0 +1,11 @@
+.period-btn {
+    display: block;
+    height: 100% !important;
+    width: 100%;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+}

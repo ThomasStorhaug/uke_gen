@@ -27,6 +27,7 @@
 }
 .schedule-preview__period {
   text-align: center;
+  padding: 0;
 }
 .schedule-preview__period--first {
   border-top: 1px solid #000000;
@@ -110,6 +111,17 @@
 
 .color-dreamscape-sea-foam {
   background-color: #8ea091;
+}
+
+.period-btn {
+  display: block;
+  height: 100% !important;
+  width: 100%;
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+}
+.period-btn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 /*# sourceMappingURL=main.css.map */
