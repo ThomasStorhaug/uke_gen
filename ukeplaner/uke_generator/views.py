@@ -22,7 +22,8 @@ class Ukeplan_view(TemplateView):
         courses =  []
 
         for course in course_subjects:
-            courses.append(course)
+            if course != "Fellesfag vg1":
+                courses.append(course)
 
         context["courses"] = courses
 

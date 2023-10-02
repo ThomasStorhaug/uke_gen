@@ -20,10 +20,10 @@
   border: 1px solid #000000;
 }
 .schedule-preview__first-row {
-  height: 4rem;
+  min-height: 4rem;
 }
 .schedule-preview__second-row {
-  height: 4rem;
+  min-height: 4rem;
 }
 .schedule-preview__period {
   text-align: center;
@@ -38,6 +38,9 @@
   border-bottom: 1px solid #000000;
   border-right: 1px solid #000000;
   border-left: 1px solid #000000;
+}
+.schedule-preview__period--double {
+  border: 1px solid #000000;
 }
 .schedule-preview__recess-row {
   height: 2rem;
@@ -115,7 +118,7 @@
 
 .period-btn {
   display: block;
-  height: 4rem;
+  min-height: 4rem;
   width: 100%;
   border: none;
   background-color: rgba(0, 0, 0, 0);

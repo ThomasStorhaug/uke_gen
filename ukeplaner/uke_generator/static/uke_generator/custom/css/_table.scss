@@ -24,11 +24,11 @@
     }
 
     &__first-row {
-        height: 4rem;
+        min-height: 4rem;
     }
 
     &__second-row {
-        height: 4rem;
+        min-height: 4rem;
     }
 
     &__period {
@@ -45,6 +45,10 @@
             border-bottom: 1px solid #000000;
             border-right: 1px solid #000000;
             border-left: 1px solid #000000;
+        }
+
+        &--double {
+            border: 1px solid #000000;
         }
     }
 
