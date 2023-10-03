@@ -1,9 +1,10 @@
 export class Schedule {
     constructor(course_data) {
-        this.course_data = course_data
-        this.course = ""
+        this.course_data = course_data;
+        this.course = "";
+        this.course_is_chosen = false;
         this.available_subjects = this.course_data["Fellesfag vg1"] // array
-        this.teachers = {}
+        this.teachers = {};
         for (let subject of this.available_subjects) {
             this.teachers[subject] = "";
         }
@@ -11,18 +12,28 @@ export class Schedule {
         this.schedule = []
         for (let i = 0; i < 5; i++) {
             var day = [];
-            for (let j = 0; j < 5; j++) {
+            for (let j = 0; j < 8; j++) {
                 day.push({teacher: "", subject: "", room: "", color: "", double: false});
             }
             this.schedule.push(day);
         }
+        // variable used to prepare a period for change, keeps track of where modal was opened from
+        this.prepared_period = {day: "", period: ""};
 
+    }
+
+    prepare_period(day, period) {
+        this.prepared_period.day = day;
+        this.prepared_period.period = period;
     }
 
     set_course(course) {
         this.course = course;
         this.set_available_subjects(course);
         this.set_teachers();
+        if (!this.course_is_chosen) {
+            this.course_is_chosen = true;
+        }
     }
 
     set_available_subjects(course) {

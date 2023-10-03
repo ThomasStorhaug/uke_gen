@@ -1,11 +1,16 @@
 .period-btn {
     display: block;
     min-height: 4rem;
+    height: 100%;
     width: 100%;
     border: none;
     background-color: rgba(0, 0, 0, 0);
 
     &:hover {
         background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    &--double {
+        min-height: 8rem;
     }
 }

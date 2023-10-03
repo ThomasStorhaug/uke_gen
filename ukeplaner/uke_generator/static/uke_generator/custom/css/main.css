@@ -21,6 +21,7 @@
 }
 .schedule-preview__first-row {
   min-height: 4rem;
+  height: 100%;
 }
 .schedule-preview__second-row {
   min-height: 4rem;
@@ -28,18 +29,7 @@
 .schedule-preview__period {
   text-align: center;
   padding: 0;
-}
-.schedule-preview__period--first {
-  border-top: 1px solid #000000;
-  border-right: 1px solid #000000;
-  border-left: 1px solid #000000;
-}
-.schedule-preview__period--second {
-  border-bottom: 1px solid #000000;
-  border-right: 1px solid #000000;
-  border-left: 1px solid #000000;
-}
-.schedule-preview__period--double {
+  height: 100%;
   border: 1px solid #000000;
 }
 .schedule-preview__recess-row {
@@ -119,12 +109,16 @@
 .period-btn {
   display: block;
   min-height: 4rem;
+  height: 100%;
   width: 100%;
   border: none;
   background-color: rgba(0, 0, 0, 0);
 }
 .period-btn:hover {
   background-color: rgba(0, 0, 0, 0.05);
+}
+.period-btn--double {
+  min-height: 8rem;
 }
 
 /*# sourceMappingURL=main.css.map */
