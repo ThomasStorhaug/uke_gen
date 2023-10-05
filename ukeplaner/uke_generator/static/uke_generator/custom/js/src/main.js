@@ -3,6 +3,19 @@ import { Schedule } from './schedule_object';
 $(document).ready(function() {
     const schedule = new Schedule(course_subjects)
 
+    function updateSortOrder() {
+        let order = [];
+
+        for(let child of $("#sortable-text-order").children()) {
+            if (!!child.id) {
+                let description = child.id.split("-")[2];
+                console.log(description)
+                order.push(description);
+            }
+        }
+        schedule.set_text_order(order);
+    }
+
     function setTeacher(subject, teacher) {
         schedule.set_teacher(subject, teacher);
         console.log(schedule.teachers);
@@ -37,6 +50,7 @@ $(document).ready(function() {
     }
     
     function prepareModal(period, day) {
+        updateSortOrder();
         const modal_container = $("#modal-course-container");
 
         schedule.prepare_period(day, period);
@@ -72,7 +86,7 @@ $(document).ready(function() {
                 new_inp.attr("checked");
             }
 
-            let new_lbl = $("<label></label>").attr("for", `modal_-subject-${subj}`).addClass("btn").text(subj);
+            let new_lbl = $("<label></label>").attr("for", `modal-subject-${subj}`).addClass("btn").text(subj);
 
             modal_container.append(new_inp).append(new_lbl);
 
@@ -138,15 +152,31 @@ $(document).ready(function() {
     }
     
     // Add text to period
-    function updatePeriodText(period, day) {
-        const period_info = schedule.get_period(day, period);
-        
+    function updatePeriodText() {
+        let prepared_period = schedule.get_prepared_period();
+        let order = schedule.text_order;
+        let period_info = schedule.get_period(prepared_period.day, prepared_period.period);
+
+        let table_btn = $(`#btn-p${prepared_period.period}-d${prepared_period.day}`);
+
+        let is_empty = true;
+        for (let item of order) {
+            if (period_info[item] != "") {
+                is_empty = false;
+                table_btn.append($(`<p id="para-p${prepared_period.period}-d${prepared_period.day}>${item}</p>`));
+            }
+        }
+        if (!is_empty) {
+            $(`#btn-p${prepared_period.period}-d${prepared_period.day}`).remove();
+        }
     }
     // Add color to period
     
     // Merge periods
     
     // Break up periods
+
+    // update schedule table
     
     function debug(string) {
         console.log(string);
@@ -161,13 +191,17 @@ $(document).ready(function() {
     
     const update_schedule_btn = document.getElementById("modal_update_schedule_btn");
     update_schedule_btn.addEventListener("click", function() {
-        let hidden_inp = document.getElementById("modal-active-period").value;
-        let day = Number(hidden_inp.substr(4, 1));
-        let period = Number(hidden_inp.substr(1, 1));
+        let prepared_period = schedule.prepared_period;
         let is_double = document.getElementById("period-is-double").checked;
-        updateSchedule(day, period, is_double);
+        updateSchedule(prepared_period.day, prepared_period.period, is_double);
     })
     
+    $("#sortable-text-order").sortable();
+    for (let item of ["subject", "teacher", "room"]) {
+        $(`#text-size-input-${item}`).change(function() {
+            $(`#text-size-${item}`).text($(`#text-size-input-${item}`).val());
+        });
+    }
     
     window.set_selected_course = setSelectedCourse;
     window.prepare_modal = prepareModal;

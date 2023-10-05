@@ -79,7 +79,5 @@ $(document).ready(function() {
                 new_inp.attr("disabled");
             }
         }
-
-
     }
 });

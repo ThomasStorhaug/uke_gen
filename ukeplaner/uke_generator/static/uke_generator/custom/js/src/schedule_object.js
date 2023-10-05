@@ -19,12 +19,22 @@ export class Schedule {
         }
         // variable used to prepare a period for change, keeps track of where modal was opened from
         this.prepared_period = {day: "", period: ""};
+        
+        this.text_order = ["subject", "teacher", "room"];
 
     }
 
+    set_text_order(order) {
+        this.text_order = order;
+    }
+
     prepare_period(day, period) {
-        this.prepared_period.day = day;
-        this.prepared_period.period = period;
+        this.prepared_period.day = day-1;
+        this.prepared_period.period = period-1;
+    }
+
+    get_prepared_period() {
+        return {day: this.prepared_period.day -1, period: this.prepared_period.period -1}
     }
 
     set_course(course) {
@@ -65,11 +75,11 @@ export class Schedule {
     }
 
     set_period(day, period, period_info) {
-        this.schedule[day][period] = period_info;
+        this.schedule[day-1][period-1] = period_info;
     }
 
     get_period(day, period) {
-        return this.schedule[day][period]
+        return this.schedule[day-1][period-1]
     }
 
     get_schedule() {

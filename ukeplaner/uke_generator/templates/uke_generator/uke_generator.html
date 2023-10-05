@@ -23,6 +23,84 @@
             <div class="row">
                 <div class="card m-2">
                     <div class="card-body">
+                        <h5 class="card-title">Rekkefølge på tekst</h5>
+                        <ul class="list-group" id="sortable-text-order">
+                            <li class="list-group-item ps-0 pe-0" id="text-order-subject">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <p id="para-order-subject" class="mb-0 text-center fs-5">Fag</p>
+                                        </div>
+                                        <div class="col-3">
+                                            <input type="range" class="form-range align-middle" id="text-size-input-subject" min="10" max="14">
+                                        </div>
+                                        <div class="col-1 d-flex align-items-center justify-content-center">
+                                            <p class="mb-0 text-center" id="text-size-subject">12</p>
+                                        </div>
+                                        <div class="col p-0 d-flex justify-content-center">
+                                            <input type="checkbox" class="btn-check" id="bold-check-subject">
+                                            <label for="bold-check-subject" class="btn btn-outline-dark fw-bold">F</label>
+                                        </div>
+                                        <div class="col p-0 d-flex justify-content-center">
+                                            <input type="checkbox" class="btn-check" id="italic-check-subject">
+                                            <label for="italic-check-subject" class="btn btn-outline-dark fst-italic">K</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item ps-0 pe-0" id="text-order-teacher">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <p id="para-order-teacher" class="mb-0 text-center fs-5">Lærer</p>
+                                        </div>
+                                        <div class="col-3">
+                                            <input type="range" class="form-range align-middle" id="text-size-input-teacher" min="10" max="14">
+                                        </div>
+                                        <div class="col-1 d-flex align-items-center justify-content-center">
+                                            <p class="mb-0 text-center" id="text-size-teacher">12</p>
+                                        </div>
+                                        <div class="col p-0 d-flex justify-content-center">
+                                            <input type="checkbox" class="btn-check" id="bold-check-teacher">
+                                            <label for="bold-check-teacher" class="btn btn-outline-dark fw-bold">F</label>
+                                        </div>
+                                        <div class="col p-0 d-flex justify-content-center">
+                                            <input type="checkbox" class="btn-check" id="italic-check-teacher">
+                                            <label for="italic-check-teacher" class="btn btn-outline-dark fst-italic">K</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item ps-0 pe-0" id="text-order-room">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <p id="para-order-room" class="mb-0 text-center fs-5">Rom</p>
+                                        </div>
+                                        <div class="col-3">
+                                            <input type="range" class="form-range align-middle" id="text-size-input-room" min="10" max="14">
+                                        </div>
+                                        <div class="col-1 d-flex align-items-center justify-content-center">
+                                            <p class="mb-0 text-center" id="text-size-room">12</p>
+                                        </div>
+                                        <div class="col p-0 d-flex justify-content-center">
+                                            <input type="checkbox" class="btn-check" id="bold-check-room">
+                                            <label for="bold-check-room" class="btn btn-outline-dark fw-bold">F</label>
+                                        </div>
+                                        <div class="col p-0 d-flex justify-content-center">
+                                            <input type="checkbox" class="btn-check" id="italic-check-room">
+                                            <label for="italic-check-room" class="btn btn-outline-dark fst-italic">K</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card m-2">
+                    <div class="card-body">
                         <h5 class="card-title">Lærere</h5>
                         <div class="container m-0 p-0" id="teacher-container">
                         </div>
@@ -48,13 +126,13 @@
                 <tr class="schedule-preview__first-row" id="row-1">
                     <td class="text-center">08:10-08:55</td>
                     {% for i in 5|repeat %}
-                    <td class="schedule-preview__period" id="td-p1-d{{ forloop.counter }}"><button id="btn-p1-d{{ forloop.counter }}" class="period-btn" type="button" data-bs-toggle="modal" data-bs-target="#specifyPeriodModal" onclick="window.prepare_modal(1, {{ forloop.counter }})">1. Time</button></td>
+                    <td class="schedule-preview__period" id="td-p1-d{{ forloop.counter }}"><button id="btn-p1-d{{ forloop.counter }}" class="period-btn" type="button" data-bs-toggle="modal" data-bs-target="#specifyPeriodModal" onclick="window.prepare_modal(1, {{ forloop.counter }})"><p id="default-p1-d{{ forloop.counter }}">1. Time</p></button></td>
                     {% endfor %}
                 </tr>
                 <tr class="schedule-preview__second-row" id="row-2">
                     <td class="text-center">08:55-09:40</td>
                     {% for i in 5|repeat %}
-                    <td class="schedule-preview__period" id="td-p2-d{{ forloop.counter }}"><button id="btn-p2-d{{ forloop.counter }}" class="period-btn" type="button" data-bs-toggle="modal" data-bs-target="#specifyPeriodModal" onclick="window.prepare_modal(2, {{ forloop.counter }})">2. Time</button></td>
+                    <td class="schedule-preview__period" id="td-p2-d{{ forloop.counter }}"><button id="btn-p2-d{{ forloop.counter }}" class="period-btn" type="button" data-bs-toggle="modal" data-bs-target="#specifyPeriodModal" onclick="window.prepare_modal(2, {{ forloop.counter }})"><p id="default-p2-d{{ forloop.counter }}">2. Time</p></button></td>
                     {% endfor %}
                 </tr>
                 <tr class="schedule-preview__recess-row">
@@ -64,13 +142,13 @@
                 <tr class="schedule-preview__first-row" id="row-3">
                     <td class="text-center">10:00-10:45</td>
                     {% for i in 5|repeat %}
-                    <td class="schedule-preview__period" id="td-p3-d{{ forloop.counter }}"><button id="btn-p3-d{{ forloop.counter }}" class="period-btn" type="button" data-bs-toggle="modal" data-bs-target="#specifyPeriodModal" onclick="window.prepare_modal(3, {{ forloop.counter })">3. Time</button></td>
+                    <td class="schedule-preview__period" id="td-p3-d{{ forloop.counter }}"><button id="btn-p3-d{{ forloop.counter }}" class="period-btn" type="button" data-bs-toggle="modal" data-bs-target="#specifyPeriodModal" onclick="window.prepare_modal(3, {{ forloop.counter }})"><p id="default-p3-d{{ forloop.counter }}">3. Time</p></button></td>
                     {% endfor %}
                 </tr>
                 <tr class="schedule-preview__second-row" id="row-4">
                     <td class="text-center">10:45-11:30</td>
                     {% for i in 5|repeat %}
-                    <td class="schedule-preview__period" id="td-p4-d{{ forloop.counter }}"><button id="btn-p4-d{{ forloop.counter }}" class="period-btn" type="button" data-bs-toggle="modal" data-bs-target="#specifyPeriodModal" onclick="window.prepare_modal(4, {{ forloop.counter }})">4. Time</button></td>
+                    <td class="schedule-preview__period" id="td-p4-d{{ forloop.counter }}"><button id="btn-p4-d{{ forloop.counter }}" class="period-btn" type="button" data-bs-toggle="modal" data-bs-target="#specifyPeriodModal" onclick="window.prepare_modal(4, {{ forloop.counter }})"><p id="default-p4-d{{ forloop.counter }}">4. Time</p></button></td>
                     {% endfor %}
                 </tr>
                 <tr class="schedule-preview__recess-row">
@@ -80,13 +158,13 @@
                 <tr class="schedule-preview__first-row" id="row-5">
                     <td class="text-center">12:00-12:45</td>
                     {% for i in 5|repeat %}
-                    <td class="schedule-preview__period" id="td-p5-d{{ forloop.counter }}"><button id="btn-p5-d{{ forloop.counter }}" class="period-btn" type="button" data-bs-toggle="modal" data-bs-target="#specifyPeriodModal" onclick="window.prepare_modal(5, {{ forloop.counter }})">5. Time</button></td>
+                    <td class="schedule-preview__period" id="td-p5-d{{ forloop.counter }}"><button id="btn-p5-d{{ forloop.counter }}" class="period-btn" type="button" data-bs-toggle="modal" data-bs-target="#specifyPeriodModal" onclick="window.prepare_modal(5, {{ forloop.counter }})"><p id="default-p5-d{{ forloop.counter }}">5. Time</p></button></td>
                     {% endfor %}
                 </tr>
                 <tr class="schedule-preview__second-row" id="row-6">
                     <td class="text-center">12:45-13:30</td>
                     {% for i in 5|repeat %}
-                    <td class="schedule-preview__period" id="td-p6-d{{ forloop.counter }}"><button id="btn-p6-d{{ forloop.counter }}" class="period-btn" type="button" data-bs-toggle="modal" data-bs-target="#specifyPeriodModal" onclick="window.prepare_modal(6, {{ forloop.counter }})">6. Time</button></td>
+                    <td class="schedule-preview__period" id="td-p6-d{{ forloop.counter }}"><button id="btn-p6-d{{ forloop.counter }}" class="period-btn" type="button" data-bs-toggle="modal" data-bs-target="#specifyPeriodModal" onclick="window.prepare_modal(6, {{ forloop.counter }})"><p id="default-p6-d{{ forloop.counter }}">6. Time</p></button></td>
                     {% endfor %}
                 </tr>
                 <tr class="schedule-preview__recess-row">
@@ -96,13 +174,13 @@
                 <tr class="schedule-preview__first-row" id="row-7">
                     <td class="text-center">13:40-14:25</td>
                     {% for i in 5|repeat %}
-                    <td class="schedule-preview__period" id="td-p7-d{{ forloop.counter }}"><button id="btn-p7-d{{ forloop.counter }}" class="period-btn" type="button" data-bs-toggle="modal" data-bs-target="#specifyPeriodModal" onclick="window.prepare_modal(7, {{ forloop.counter }})">7. Time</button></td>
+                    <td class="schedule-preview__period" id="td-p7-d{{ forloop.counter }}"><button id="btn-p7-d{{ forloop.counter }}" class="period-btn" type="button" data-bs-toggle="modal" data-bs-target="#specifyPeriodModal" onclick="window.prepare_modal(7, {{ forloop.counter }})"><p id="default-p7-d{{ forloop.counter }}">7. Time</p></button></td>
                     {% endfor %}
                 </tr>
                 <tr class="schedule-preview__second-row" id="row-8">
                     <td class="text-center">14:25-15:10</td>
                     {% for i in 5|repeat %}
-                    <td class="schedule-preview__period" id="td-p8-d{{ forloop.counter }}"><button id="btn-p8-d{{ forloop.counter }}" class="period-btn" type="button" data-bs-toggle="modal" data-bs-target="#specifyPeriodModal" onclick="window.prepare_modal(8, {{ forloop.counter }})">8. Time</button></td>
+                    <td class="schedule-preview__period" id="td-p8-d{{ forloop.counter }}"><button id="btn-p8-d{{ forloop.counter }}" class="period-btn" type="button" data-bs-toggle="modal" data-bs-target="#specifyPeriodModal" onclick="window.prepare_modal(8, {{ forloop.counter }})"><p id="default-p8-d{{ forloop.counter }}">8. Time</p></button></td>
                     {% endfor %}
             </table>
         </div>
