@@ -9,7 +9,6 @@ $(document).ready(function() {
         for(let child of $("#sortable-text-order").children()) {
             if (!!child.id) {
                 let description = child.id.split("-")[2];
-                console.log(description)
                 order.push(description);
             }
         }
@@ -18,7 +17,6 @@ $(document).ready(function() {
 
     function setTeacher(subject, teacher) {
         schedule.set_teacher(subject, teacher);
-        console.log(schedule.teachers);
     }
     
     function populateTeacherInput() {
@@ -61,13 +59,13 @@ $(document).ready(function() {
         modal_container.empty();
 
         if (!schedule.course_is_chosen) {
-            $("#period-is-double").attr("disabled");
-            $("#modal-room-input").attr("disabled");
-            $("#modal-update-schedule-btn").attr("disabled");
+            $("#period-is-double").attr("disabled", true);
+            $("#modal-room-input").attr("disabled", true);
+            $("#modal-update-schedule-btn").attr("disabled", true);
 
             let alert = $("<div></div>").addClass("alert alert-danger").attr("role", "alert").attr("id", "modal-alert").text("Du må velge linje først!");
             
-            $("#modal-double-eriod-form").before(alert);
+            $("#modal-double-period-form").before(alert);
 
         } else {
             $("#period-is-double").removeAttr("disabled");
@@ -83,7 +81,7 @@ $(document).ready(function() {
             let new_inp = $("<input>");
             new_inp.attr({type: "radio", "id": `modal-subject-${subj}`, name: "modal-subject-select", value: subj}).addClass("btn-check");
             if (subj == current_period.subject) {
-                new_inp.attr("checked");
+                new_inp.attr("checked", true);
             }
 
             let new_lbl = $("<label></label>").attr("for", `modal-subject-${subj}`).addClass("btn").text(subj);
@@ -91,7 +89,7 @@ $(document).ready(function() {
             modal_container.append(new_inp).append(new_lbl);
 
             if (!schedule.course_is_chosen) {
-                new_inp.attr("disabled");
+                new_inp.attr("disabled", true);
             }
         }
     }
@@ -101,82 +99,113 @@ $(document).ready(function() {
         schedule.set_course(course);
         populateTeacherInput();
     }
-    // Break up into fundamentals
-    function updateSchedule(day, period, double) {
-        // get values from modal
-        let room = document.getElementById("modal_room_input").value;
-        let subject_radio_checked = document.querySelector("input[name='modal_subject_select']:checked");
-        if (subject_radio_checked) {
-            var selected_subj = subject_radio_checked.value;
-        } else {
-            var selected_subj = "";
-        }
-    
-        // get teacher from schedule object
-        var teacher = schedule.teachers[selected_subj];
-    
-        // create period object to send to period attribute of schedule object
-        var period_info = {
-            teacher: teacher,
-            subject: selected_subj,
-            room: room
-        }
-    
-        // update schedule object
-        schedule.set_period(day, period, period_info);
-    
-        // update DOM schedule
-        let obj_info = schedule.get_period(day, period);
-        let cell_text = [obj_info.subject, obj_info.room, obj_info.teacher]
-        let inner_text = ""
-        for (let txt of cell_text) {
-            if (txt) {
-                inner_text = inner_text.concat(`${txt}\n`);
+
+    function updateSchedule() {
+        let room = $("#modal-room-input").val();
+        let subject = "";
+        
+        for (let child of $("#modal-course-container").children("input")) {
+            if (child.checked) {
+                subject = child.value;
             }
         }
-        let cell_btn = document.getElementById(`btn-p${period}-d${day}`)
-        let table_cell = cell_btn.parentElement;
-        cell_btn.innerText = inner_text;
-    
-        // if its double, add rowspan attr and remove cell
-        let row = table_cell.parentElement;
-        if (double) {
-            if (row.classList.contains("schedule-preview__first-row")) {
-                table_cell.setAttribute("rowspan", "2");
-                table_cell.classList.remove("schedule-preview__period--first");
-                table_cell.classList.add("schedule-preview__period--double");
-                document.getElementById(`td-p${period + 1}-d${day}`).remove();
-            }
-        } 
-    
+        let teacher = schedule.teachers[subject];
+
+        schedule.set_period(schedule.get_prepared_period().day, schedule.get_prepared_period().period, {room: room, teacher:teacher, subject:subject});
     }
-    
-    // Add text to period
-    function updatePeriodText() {
-        let prepared_period = schedule.get_prepared_period();
+
+    /**
+     * Updates paragraph and text nodes of the given cells button element
+     * @param {number} period Number representing the period of the given day, starts with 1
+     * @param {number} day Number representing the day, 1 monday etc. 
+     */
+    function updatePeriodText(period, day) {
+        // Get the order of paragraph nodes from the schedule object
         let order = schedule.text_order;
-        let period_info = schedule.get_period(prepared_period.day, prepared_period.period);
+        // Get the period info from the schedule object
+        let period_info = schedule.get_period(day, period);
+        var prepared_period = schedule.get_prepared_period();
+
+        // Get the type-info from the menu
+        var bold = {
+            subject: $("#bold-check-subject").prop("checked"),
+            teacher: $("#bold-check-teacher").prop("checked"),
+            room: $("#bold-check-room").prop("checked")
+        }
+        console.log(bold)
+        var italic = {
+            subject: $("#italic-check-subject").prop("checked"),
+            teacher: $("#italic-check-teacher").prop("checked"),
+            room: $("#italic-check-room").prop("checked")
+        }
+
+        var sizes = {
+            subject: $("#text-size-input-subject").val(),
+            teacher: $("#text-size-input-teacher").val(),
+            room: $("#text-size-input-room").val()
+        }
+
+        var names = {
+            subject: "Fag",
+            teacher: "Lærer",
+            room: "Rom"
+        }
 
         let table_btn = $(`#btn-p${prepared_period.period}-d${prepared_period.day}`);
 
-        let is_empty = true;
+        table_btn.empty();
+
         for (let item of order) {
-            if (period_info[item] != "") {
-                is_empty = false;
-                table_btn.append($(`<p id="para-p${prepared_period.period}-d${prepared_period.day}>${item}</p>`));
+            if (period_info[item] == "") {
+                var text = names[item];
+            } else {
+                var text = period_info[item];
             }
-        }
-        if (!is_empty) {
-            $(`#btn-p${prepared_period.period}-d${prepared_period.day}`).remove();
+            var para = $("<p></p>").text(text).addClass("text-center");
+
+            if (bold[item]) {
+                para.addClass("fw-bold");
+            } else {
+                para.removeClass("fw-bold");
+            }
+            if (italic[item]) {
+                para.addClass("fst-italic");
+            }
+
+            table_btn.append(para);
         }
     }
     // Add color to period
     
     // Merge periods
+    function mergePeriods(period, day) {
+        $(`#td-p${period}-d${day}`)
+    }
     
     // Break up periods
 
     // update schedule table
+    /**
+     * Updates the DOM elements of the table
+     * @param {bolean} all If set to true the whole table will be updated, otherwise only the prepared period.  
+     */
+    function updateTable(all=false) {
+        console.log("Trying to update table")
+        // get info from schedule object
+        var table_inf = schedule.get_schedule()
+        // update cell text
+        if (!all) {
+            let prepared_period = schedule.get_prepared_period();
+            updatePeriodText(prepared_period.period, prepared_period.day)
+        } else {
+            table_inf.forEach(function (day, i) {
+                day.forEach(function (_, j) {
+                    updatePeriodText(j, i);
+                });
+            })
+        }
+        // add color based on subject
+    }
     
     function debug(string) {
         console.log(string);
@@ -189,19 +218,17 @@ $(document).ready(function() {
         setSelectedCourse(course_select.options[course_select.selectedIndex].value);
     });
     
-    const update_schedule_btn = document.getElementById("modal_update_schedule_btn");
-    update_schedule_btn.addEventListener("click", function() {
-        let prepared_period = schedule.prepared_period;
-        let is_double = document.getElementById("period-is-double").checked;
-        updateSchedule(prepared_period.day, prepared_period.period, is_double);
-    })
-    
     $("#sortable-text-order").sortable();
     for (let item of ["subject", "teacher", "room"]) {
         $(`#text-size-input-${item}`).change(function() {
             $(`#text-size-${item}`).text($(`#text-size-input-${item}`).val());
         });
     }
+
+    $("#modal-update-schedule-btn").click(function() {
+        updateSchedule();
+        updateTable();
+    })
     
     window.set_selected_course = setSelectedCourse;
     window.prepare_modal = prepareModal;

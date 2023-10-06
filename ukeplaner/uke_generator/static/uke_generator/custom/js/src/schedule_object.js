@@ -34,7 +34,7 @@ export class Schedule {
     }
 
     get_prepared_period() {
-        return {day: this.prepared_period.day -1, period: this.prepared_period.period -1}
+        return {day: this.prepared_period.day +1, period: this.prepared_period.period +1}
     }
 
     set_course(course) {
