@@ -1,12 +1,12 @@
 import { Schedule } from './schedule_object';
 
-$(document).ready(function() {
+$(document).ready(function () {
     const schedule = new Schedule(course_subjects)
 
     function updateSortOrder() {
         let order = [];
 
-        for(let child of $("#sortable-text-order").children()) {
+        for (let child of $("#sortable-text-order").children()) {
             if (!!child.id) {
                 let description = child.id.split("-")[2];
                 order.push(description);
@@ -18,35 +18,35 @@ $(document).ready(function() {
     function setTeacher(subject, teacher) {
         schedule.set_teacher(subject, teacher);
     }
-    
+
     function populateTeacherInput() {
         const subjects = schedule.get_available_subjects();
         const input_container = $("#teacher-container");
-    
+
         input_container.empty();
-    
+
         for (let subject of subjects) {
             // Input group setup
             var new_input_group = $("<div></div>").addClass("input-group");
-    
+
             var txt_input = $("<input></input>").addClass("form-control").attr("id", `#teacher-input-${subject}`);
-            txt_input.change(function() {
+            txt_input.change(function () {
                 $(`#teacher-input${subject}`).removeClass("is-valid");
             });
-    
+
             let label = $("<label></label>").attr("for", `teacher-input-${subject}`).text(subject);
-    
-            let btn = $("<button></button>").addClass("btn btn-outline-secondary").attr("type", "button").attr("id", `add-teacher-to${subject}`).click(function() {
+
+            let btn = $("<button></button>").addClass("btn btn-outline-secondary").attr("type", "button").attr("id", `add-teacher-to${subject}`).click(function () {
                 $(`#teacher-input-${subject}`).addClass("is-valid");
                 let val = $(`#teacher-input-${subject}`).val();
                 setTeacher(subject, val);
             }).text("Legg til");
-    
+
             new_input_group.append(txt_input).append(btn);
             input_container.append(label).append(new_input_group);
         }
     }
-    
+
     function prepareModal(period, day) {
         updateSortOrder();
         const modal_container = $("#modal-course-container");
@@ -64,7 +64,7 @@ $(document).ready(function() {
             $("#modal-update-schedule-btn").attr("disabled", true);
 
             let alert = $("<div></div>").addClass("alert alert-danger").attr("role", "alert").attr("id", "modal-alert").text("Du må velge linje først!");
-            
+
             $("#modal-double-period-form").before(alert);
 
         } else {
@@ -72,14 +72,14 @@ $(document).ready(function() {
             $("#modal-room-input").removeAttr("disabled");
             $("#modal-update-schedule-btn").removeAttr("disabled");
 
-            if($("#modal-alert")) {
+            if ($("#modal-alert")) {
                 $("#modal-alert").remove();
             }
         }
 
         for (let subj of subjects) {
             let new_inp = $("<input>");
-            new_inp.attr({type: "radio", "id": `modal-subject-${subj}`, name: "modal-subject-select", value: subj}).addClass("btn-check");
+            new_inp.attr({ type: "radio", "id": `modal-subject-${subj}`, name: "modal-subject-select", value: subj }).addClass("btn-check");
             if (subj == current_period.subject) {
                 new_inp.attr("checked", true);
             }
@@ -93,17 +93,21 @@ $(document).ready(function() {
             }
         }
     }
-    
+
     function setSelectedCourse(course) {
-    
+
         schedule.set_course(course);
         populateTeacherInput();
     }
 
+    /**
+     * Updates teh schedule object with information from the modal and the menu
+     */
     function updateSchedule() {
+        // Get information from modal inputs
         let room = $("#modal-room-input").val();
         let subject = "";
-        
+        // Find which subject is checked in the modal
         for (let child of $("#modal-course-container").children("input")) {
             if (child.checked) {
                 subject = child.value;
@@ -111,7 +115,7 @@ $(document).ready(function() {
         }
         let teacher = schedule.teachers[subject];
 
-        schedule.set_period(schedule.get_prepared_period().day, schedule.get_prepared_period().period, {room: room, teacher:teacher, subject:subject});
+        schedule.set_period(schedule.get_prepared_period().day, schedule.get_prepared_period().period, { room: room, teacher: teacher, subject: subject });
     }
 
     /**
@@ -176,12 +180,12 @@ $(document).ready(function() {
         }
     }
     // Add color to period
-    
+
     // Merge periods
     function mergePeriods(period, day) {
         $(`#td-p${period}-d${day}`)
     }
-    
+
     // Break up periods
 
     // update schedule table
@@ -189,7 +193,7 @@ $(document).ready(function() {
      * Updates the DOM elements of the table
      * @param {bolean} all If set to true the whole table will be updated, otherwise only the prepared period.  
      */
-    function updateTable(all=false) {
+    function updateTable(all = false) {
         console.log("Trying to update table")
         // get info from schedule object
         var table_inf = schedule.get_schedule()
@@ -206,30 +210,30 @@ $(document).ready(function() {
         }
         // add color based on subject
     }
-    
+
     function debug(string) {
         console.log(string);
     }
     // event listeners
-    
-    var course_select =  document.getElementById("course-select");
-    
-    course_select.addEventListener("change", function() {
+
+    var course_select = document.getElementById("course-select");
+
+    course_select.addEventListener("change", function () {
         setSelectedCourse(course_select.options[course_select.selectedIndex].value);
     });
-    
+
     $("#sortable-text-order").sortable();
     for (let item of ["subject", "teacher", "room"]) {
-        $(`#text-size-input-${item}`).change(function() {
+        $(`#text-size-input-${item}`).change(function () {
             $(`#text-size-${item}`).text($(`#text-size-input-${item}`).val());
         });
     }
 
-    $("#modal-update-schedule-btn").click(function() {
+    $("#modal-update-schedule-btn").click(function () {
         updateSchedule();
         updateTable();
     })
-    
+
     window.set_selected_course = setSelectedCourse;
     window.prepare_modal = prepareModal;
 });
