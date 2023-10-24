@@ -1,0 +1,172 @@
+{
+    "dreamscape": {
+        "sage": {
+            "bg": "#c9cca1",
+            "text": "#333333"
+        },
+        "mustard": {
+            "bg": "#caa05a",
+            "text": "#333333"
+        },
+        "rust": {
+            "bg": "#ae6a47",
+            "text": "#e0e0e0"
+        },
+        "brick": {
+            "bg": "#8b4048",
+            "text": "#e0e0e0"
+        },
+        "smoky": {
+            "bg": "#543344",
+            "text": "#e0e0e0"
+        },
+        "slate": {
+            "bg": "#515262",
+            "text": "#e0e0e0"
+        },
+        "dusty": {
+            "bg": "#63787d",
+            "text": "#e0e0e0"
+        },
+        "sea-foam": {
+            "bg": "#8ea091",
+            "text": "#333333"
+        }
+    },
+    "pollen": {
+        "mahogany": {
+            "bg": "#73464c",
+            "text": "#e0e0e0"
+        },
+        "magenta": {
+            "bg": "#ab5675",
+            "text": "#e0e0e0"
+        },
+        "coral": {
+            "bg": "#ee6a7c",
+            "text": "#333333"
+        },
+        "salmon": {
+            "bg": "#ffa7a5",
+            "text": "#333333"
+        },
+        "sunlight": {
+            "bg": "#ffe07e",
+            "text": "#333333"
+        },
+        "peach": {
+            "bg": "#ffe7d6",
+            "text": "#333333"
+        },
+        "mint": {
+            "bg": "#72dcbb",
+            "text": "#333333"
+        },
+        "turquoise": {
+            "bg": "#34acba",
+            "text": "#e0e0e0"
+        }
+    },
+    "odd_feeling": {
+        "crimson": {
+            "bg": "#900c3f",
+            "text": "#e0e0e0"
+        },
+        "ruby": {
+            "bg": "#e84a5f",
+            "text": "#e0e0e0"
+        },
+        "sunset": {
+            "bg": "#ff847c",
+            "text": "#333333"
+        },
+        "flamingo": {
+            "bg": "#fc9d9d",
+            "text": "#333333"
+        },
+        "apricot": {
+            "bg": "#feceab",
+            "text": "#333333"
+        },
+        "taupe": {
+            "bg": "#ccafaf",
+            "text": "#333333"
+        },
+        "fern": {
+            "bg": "#99b898",
+            "text": "#333333"
+        },
+        "snow": {
+            "bg": "#ffffff",
+            "text": "#333333"
+        }
+    },
+    "funky_future": {
+        "nightshade": {
+            "bg": "#2b0f54",
+            "text": "#e0e0e0"
+        },
+        "fuchsia": {
+            "bg": "#ab1f65",
+            "text": "#e0e0e0"
+        },
+        "cherry": {
+            "bg": "#ff4f69",
+            "text": "#e0e0e0"
+        },
+        "whisper": {
+            "bg": "#fff7f8",
+            "text": "#333333"
+        },
+        "tangerine": {
+            "bg": "#ff8142",
+            "text": "#333333"
+        },
+        "sunray": {
+            "bg": "#ffda45",
+            "text": "#333333"
+        },
+        "sapphire": {
+            "bg": "#3368dc",
+            "text": "#e0e0e0"
+        },
+        "aqua": {
+            "bg": "#49e7ec",
+            "text": "#333333"
+        }
+    },
+    "retrocal": {
+        "mintleaf": {
+            "bg": "#6eb8a8",
+            "text": "#333333"
+        },
+        "forest": {
+            "bg": "#2a584f",
+            "text": "#e0e0e0"
+        },
+        "limeade": {
+            "bg": "#74a33f",
+            "text": "#333333"
+        },
+        "cream": {
+            "bg": "#fcffc0",
+            "text": "#333333"
+        },
+        "rosewood": {
+            "bg": "#c6505a",
+            "text": "#e0e0e0"
+        },
+        "plum": {
+            "bg": "#2f142f",
+            "text": "#e0e0e0"
+        },
+        "brick": {
+            "bg": "#774448",
+            "text": "#e0e0e0"
+        },
+        "apricot": {
+            "bg": "#ee9c5d",
+            "text": "#333333"
+        }
+    }
+}

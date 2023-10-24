@@ -10,182 +10,232 @@
     <div class="row">
         <div class="menu col">
             <div class="row">
-                <div class="form-floating m-2 p-0">
-                    <select  id="course-select" class="form-select">
-                        <option value="" selected disabled>-</option>
-                        {% for course in courses %}
-                        <option value="{{ course }}">{{ course }}</option>
-                        {% endfor %}
-                    </select>
-                    <label for="course-select">Linje</label>
+                <div class="card m-2">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fa fa-solid fa-toolbox pe-2"></i>Velg linje</h5>
+                        <select id="course-select" class="form-select">
+                            <option value="" selected disabled>-</option>
+                            {% for course in courses %}
+                            <option value="{{ course }}">{{ course }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
                 </div>
+
             </div>
             <div class="row">
                 <div class="card m-2">
                     <div class="card-body">
-                        <h5 class="card-title">Rekkefølge på tekst</h5>
+                        <h5 class="card-title"><i class="fa fa-solid fa-sort pe-2"></i> Rekkefølge på tekst</h5>
                         <ul class="list-group" id="sortable-text-order">
-                            <li class="list-group-item ps-0 pe-0" id="text-order-subject">
+                            {% for item in cell_content %}
+                            <li class="list-group-item ps-0 pe-0" id="text-order-{{ item.identifier }}">
                                 <div class="container">
                                     <div class="row">
-                                        <div class="col-5">
-                                            <p id="para-order-subject" class="mb-0 text-center fs-5">Fag</p>
+                                        <div class="col-2 d-flex justify-content-left align-items-center">
+                                            <i class="fa fa-solid fa-bars"></i>
                                         </div>
-                                        <div class="col-3">
-                                            <input type="range" class="form-range align-middle" id="text-size-input-subject" min="10" max="14">
+                                        <div class="col d-flex justify-content-center align-items-center">
+                                            <p class="mb-0 text-center fs-5" id="para-order-{{ item.identifier }}">{{ item.name }}</p>
                                         </div>
-                                        <div class="col-1 d-flex align-items-center justify-content-center">
-                                            <p class="mb-0 text-center" id="text-size-subject">12</p>
-                                        </div>
-                                        <div class="col p-0 d-flex justify-content-center">
-                                            <input type="checkbox" class="btn-check" id="bold-check-subject">
-                                            <label for="bold-check-subject" class="btn btn-outline-dark fw-bold">F</label>
-                                        </div>
-                                        <div class="col p-0 d-flex justify-content-center">
-                                            <input type="checkbox" class="btn-check" id="italic-check-subject">
-                                            <label for="italic-check-subject" class="btn btn-outline-dark fst-italic">K</label>
+                                        <div class="col p-0 d-flex justify-content-right">
+                                            <div class="input-group">
+                                                <div class="dropstart">
+                                                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"><i class="fa fa-solid fa-text-height"></i></button>
+                                                    <ul class="dropdown-menu min-w-1">
+                                                        <li><p class="dropdown-item">12</p></li>
+                                                    </ul>
+                                                </div>
+                                                <input type="checkbox" class="btn-check" id="bold-check-{{ item.identifier }}">
+                                                <label for="bold-check-{{ item.identifier }}" class="btn btn-outline-dark">
+                                                    <i class="fa fa-solid fa-bold"></i>
+                                                </label>
+                                                <input type="checkbox" class="btn-check" id="italic-check-{{ item.identifier }}">
+                                                <label for="italic-check-{{ item.identifier }}" class="btn btn-outline-dark">
+                                                    <i class="fa fa-solid fa-italic"></i>
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </li>
-                            <li class="list-group-item ps-0 pe-0" id="text-order-teacher">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-5">
-                                            <p id="para-order-teacher" class="mb-0 text-center fs-5">Lærer</p>
-                                        </div>
-                                        <div class="col-3">
-                                            <input type="range" class="form-range align-middle" id="text-size-input-teacher" min="10" max="14">
-                                        </div>
-                                        <div class="col-1 d-flex align-items-center justify-content-center">
-                                            <p class="mb-0 text-center" id="text-size-teacher">12</p>
-                                        </div>
-                                        <div class="col p-0 d-flex justify-content-center">
-                                            <input type="checkbox" class="btn-check" id="bold-check-teacher">
-                                            <label for="bold-check-teacher" class="btn btn-outline-dark fw-bold">F</label>
-                                        </div>
-                                        <div class="col p-0 d-flex justify-content-center">
-                                            <input type="checkbox" class="btn-check" id="italic-check-teacher">
-                                            <label for="italic-check-teacher" class="btn btn-outline-dark fst-italic">K</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item ps-0 pe-0" id="text-order-room">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-5">
-                                            <p id="para-order-room" class="mb-0 text-center fs-5">Rom</p>
-                                        </div>
-                                        <div class="col-3">
-                                            <input type="range" class="form-range align-middle" id="text-size-input-room" min="10" max="14">
-                                        </div>
-                                        <div class="col-1 d-flex align-items-center justify-content-center">
-                                            <p class="mb-0 text-center" id="text-size-room">12</p>
-                                        </div>
-                                        <div class="col p-0 d-flex justify-content-center">
-                                            <input type="checkbox" class="btn-check" id="bold-check-room">
-                                            <label for="bold-check-room" class="btn btn-outline-dark fw-bold">F</label>
-                                        </div>
-                                        <div class="col p-0 d-flex justify-content-center">
-                                            <input type="checkbox" class="btn-check" id="italic-check-room">
-                                            <label for="italic-check-room" class="btn btn-outline-dark fst-italic">K</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="card m-2">
-                    <div class="card-body">
-                        <h5 class="card-title">Lærere</h5>
-                        <div class="container m-0 p-0" id="teacher-container">
+                    <div class="card-body container">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title"><i class="fa fa-solid fa-person-chalkboard pe-2"></i>Lærere</h5>
+                            </div>
+                            <div class="col d-flex justify-content-end align-items-center">
+                                <button class="btn fa fa-solid fa-caret-up fa-xl p-0" data-bs-toggle="collapse"
+                                    data-bs-target="#teacher-container" type="button"
+                                    id="teacher-collapse-btn"></button>
+                            </div>
+                        </div>
+                        <div class="collapse show container m-0 p-0" id="teacher-container">
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="card m-2">
+                    <div class="card-body container">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title"><i class="fa fa-solid fa-brush pe-2"></i>Farger</h5>
+                            </div>
+                            <div class="col d-flex justify-content-end align-items-center">
+                                <button class="btn fa fa-solid fa-caret-up fa-xl p-0" data-bs-toggle="collapse"
+                                    data-bs-target="#color-container" id="color-collapse-btn"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <button class="btn dropdown-toggle" data-bs-toggle="dropdown" type="button">Velg palett</button>
+                        <ul class="dropdown-menu">
+                            {% for name, dict in palettes.items %}
+                            <li class="dropdown-item">
+                                <div class="input-group">
+                                    <div class="input-group-text">{% cycle 'A' 'B' 'C' 'D' 'E' %}:</div>
+                                    {% for color in dict %}
+                                    <div class="input-group-text color-{{name}}-{{color}}"></div>
+                                    {% endfor %}
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
         </div>
-        <div class="preview-container col-8">
-            <table class="schedule-preview">
-                <tr class="schedule-preview__info-row">
-                    <td class="schedule-preview__info-cell" colspan="6">
-                        Info for uken:
-                    </td>
-                </tr>
-                <tr class="schedule-preview__header-row">
-                    <th></th>
-                    <th class="schedule-preview__header-cell">Mandag dd.mm</th>
-                    <th class="schedule-preview__header-cell">Tirsdag dd.mm</th>
-                    <th class="schedule-preview__header-cell">Onsdag dd.mm</th>
-                    <th class="schedule-preview__header-cell">Torsdag dd.mm</th>
-                    <th class="schedule-preview__header-cell">Fredag dd.mm</th>
-                </tr>
-                <tr class="schedule-preview__first-row" id="row-1">
-                    <td class="text-center">08:10-08:55</td>
-                    {% for i in 5|repeat %}
-                    <td class="schedule-preview__period" id="td-p1-d{{ forloop.counter }}"><button id="btn-p1-d{{ forloop.counter }}" class="period-btn" type="button" data-bs-toggle="modal" data-bs-target="#specifyPeriodModal" onclick="window.prepare_modal(1, {{ forloop.counter }})"><p id="default-p1-d{{ forloop.counter }}">1. Time</p></button></td>
-                    {% endfor %}
-                </tr>
-                <tr class="schedule-preview__second-row" id="row-2">
-                    <td class="text-center">08:55-09:40</td>
-                    {% for i in 5|repeat %}
-                    <td class="schedule-preview__period" id="td-p2-d{{ forloop.counter }}"><button id="btn-p2-d{{ forloop.counter }}" class="period-btn" type="button" data-bs-toggle="modal" data-bs-target="#specifyPeriodModal" onclick="window.prepare_modal(2, {{ forloop.counter }})"><p id="default-p2-d{{ forloop.counter }}">2. Time</p></button></td>
-                    {% endfor %}
-                </tr>
-                <tr class="schedule-preview__recess-row">
-                    <td class="text-center">09:40-10:00</td>
-                    <td class="schedule-preview__recess-cell" colspan="5">Pause</td>
-                </tr>
-                <tr class="schedule-preview__first-row" id="row-3">
-                    <td class="text-center">10:00-10:45</td>
-                    {% for i in 5|repeat %}
-                    <td class="schedule-preview__period" id="td-p3-d{{ forloop.counter }}"><button id="btn-p3-d{{ forloop.counter }}" class="period-btn" type="button" data-bs-toggle="modal" data-bs-target="#specifyPeriodModal" onclick="window.prepare_modal(3, {{ forloop.counter }})"><p id="default-p3-d{{ forloop.counter }}">3. Time</p></button></td>
-                    {% endfor %}
-                </tr>
-                <tr class="schedule-preview__second-row" id="row-4">
-                    <td class="text-center">10:45-11:30</td>
-                    {% for i in 5|repeat %}
-                    <td class="schedule-preview__period" id="td-p4-d{{ forloop.counter }}"><button id="btn-p4-d{{ forloop.counter }}" class="period-btn" type="button" data-bs-toggle="modal" data-bs-target="#specifyPeriodModal" onclick="window.prepare_modal(4, {{ forloop.counter }})"><p id="default-p4-d{{ forloop.counter }}">4. Time</p></button></td>
-                    {% endfor %}
-                </tr>
-                <tr class="schedule-preview__recess-row">
-                    <td class="text-center">11:30-12:00</td>
-                    <td class="schedule-preview__recess-cell" colspan="5">Lunsjpause</td>
-                </tr>
-                <tr class="schedule-preview__first-row" id="row-5">
-                    <td class="text-center">12:00-12:45</td>
-                    {% for i in 5|repeat %}
-                    <td class="schedule-preview__period" id="td-p5-d{{ forloop.counter }}"><button id="btn-p5-d{{ forloop.counter }}" class="period-btn" type="button" data-bs-toggle="modal" data-bs-target="#specifyPeriodModal" onclick="window.prepare_modal(5, {{ forloop.counter }})"><p id="default-p5-d{{ forloop.counter }}">5. Time</p></button></td>
-                    {% endfor %}
-                </tr>
-                <tr class="schedule-preview__second-row" id="row-6">
-                    <td class="text-center">12:45-13:30</td>
-                    {% for i in 5|repeat %}
-                    <td class="schedule-preview__period" id="td-p6-d{{ forloop.counter }}"><button id="btn-p6-d{{ forloop.counter }}" class="period-btn" type="button" data-bs-toggle="modal" data-bs-target="#specifyPeriodModal" onclick="window.prepare_modal(6, {{ forloop.counter }})"><p id="default-p6-d{{ forloop.counter }}">6. Time</p></button></td>
-                    {% endfor %}
-                </tr>
-                <tr class="schedule-preview__recess-row">
-                    <td class="text-center">13:30-13:40</td>
-                    <td class="schedule-preview__recess-cell" colspan="5">Pause</td>
-                </tr>
-                <tr class="schedule-preview__first-row" id="row-7">
-                    <td class="text-center">13:40-14:25</td>
-                    {% for i in 5|repeat %}
-                    <td class="schedule-preview__period" id="td-p7-d{{ forloop.counter }}"><button id="btn-p7-d{{ forloop.counter }}" class="period-btn" type="button" data-bs-toggle="modal" data-bs-target="#specifyPeriodModal" onclick="window.prepare_modal(7, {{ forloop.counter }})"><p id="default-p7-d{{ forloop.counter }}">7. Time</p></button></td>
-                    {% endfor %}
-                </tr>
-                <tr class="schedule-preview__second-row" id="row-8">
-                    <td class="text-center">14:25-15:10</td>
-                    {% for i in 5|repeat %}
-                    <td class="schedule-preview__period" id="td-p8-d{{ forloop.counter }}"><button id="btn-p8-d{{ forloop.counter }}" class="period-btn" type="button" data-bs-toggle="modal" data-bs-target="#specifyPeriodModal" onclick="window.prepare_modal(8, {{ forloop.counter }})"><p id="default-p8-d{{ forloop.counter }}">8. Time</p></button></td>
-                    {% endfor %}
-            </table>
+        <div class="card m-2 ms-3 col-8">
+            <div class="card-body">
+                <h5 class="card-title"><i class="fa fa-solid fa-table me-2"></i>Forhåndsvisning:</h5>
+                <div class="preview-container">
+                    <table class="schedule-preview ms-0 me-0">
+                        <tr class="schedule-preview__info-row">
+                            <td class="schedule-preview__info-cell" colspan="6">
+                                Info for uken:
+                            </td>
+                        </tr>
+                        <tr class="schedule-preview__header-row">
+                            <th></th>
+                            <th class="schedule-preview__header-cell">Mandag dd.mm</th>
+                            <th class="schedule-preview__header-cell">Tirsdag dd.mm</th>
+                            <th class="schedule-preview__header-cell">Onsdag dd.mm</th>
+                            <th class="schedule-preview__header-cell">Torsdag dd.mm</th>
+                            <th class="schedule-preview__header-cell">Fredag dd.mm</th>
+                        </tr>
+                        <tr class="schedule-preview__first-row" id="row-1">
+                            <td class="text-center">08:10-08:55</td>
+                            {% for i in 5|repeat %}
+                            <td class="schedule-preview__period" id="td-p1-d{{ forloop.counter }}"><button
+                                    id="btn-p1-d{{ forloop.counter }}" class="period-btn" type="button"
+                                    data-bs-toggle="modal" data-bs-target="#specifyPeriodModal"
+                                    onclick="window.prepare_modal(1, {{ forloop.counter }})">
+                                    <p id="default-p1-d{{ forloop.counter }}">1. Time</p>
+                                </button></td>
+                            {% endfor %}
+                        </tr>
+                        <tr class="schedule-preview__second-row" id="row-2">
+                            <td class="text-center">08:55-09:40</td>
+                            {% for i in 5|repeat %}
+                            <td class="schedule-preview__period" id="td-p2-d{{ forloop.counter }}"><button
+                                    id="btn-p2-d{{ forloop.counter }}" class="period-btn" type="button"
+                                    data-bs-toggle="modal" data-bs-target="#specifyPeriodModal"
+                                    onclick="window.prepare_modal(2, {{ forloop.counter }})">
+                                    <p id="default-p2-d{{ forloop.counter }}">2. Time</p>
+                                </button></td>
+                            {% endfor %}
+                        </tr>
+                        <tr class="schedule-preview__recess-row">
+                            <td class="text-center">09:40-10:00</td>
+                            <td class="schedule-preview__recess-cell" colspan="5">Pause</td>
+                        </tr>
+                        <tr class="schedule-preview__first-row" id="row-3">
+                            <td class="text-center">10:00-10:45</td>
+                            {% for i in 5|repeat %}
+                            <td class="schedule-preview__period" id="td-p3-d{{ forloop.counter }}"><button
+                                    id="btn-p3-d{{ forloop.counter }}" class="period-btn" type="button"
+                                    data-bs-toggle="modal" data-bs-target="#specifyPeriodModal"
+                                    onclick="window.prepare_modal(3, {{ forloop.counter }})">
+                                    <p id="default-p3-d{{ forloop.counter }}">3. Time</p>
+                                </button></td>
+                            {% endfor %}
+                        </tr>
+                        <tr class="schedule-preview__second-row" id="row-4">
+                            <td class="text-center">10:45-11:30</td>
+                            {% for i in 5|repeat %}
+                            <td class="schedule-preview__period" id="td-p4-d{{ forloop.counter }}"><button
+                                    id="btn-p4-d{{ forloop.counter }}" class="period-btn" type="button"
+                                    data-bs-toggle="modal" data-bs-target="#specifyPeriodModal"
+                                    onclick="window.prepare_modal(4, {{ forloop.counter }})">
+                                    <p id="default-p4-d{{ forloop.counter }}">4. Time</p>
+                                </button></td>
+                            {% endfor %}
+                        </tr>
+                        <tr class="schedule-preview__recess-row">
+                            <td class="text-center">11:30-12:00</td>
+                            <td class="schedule-preview__recess-cell" colspan="5">Lunsjpause</td>
+                        </tr>
+                        <tr class="schedule-preview__first-row" id="row-5">
+                            <td class="text-center">12:00-12:45</td>
+                            {% for i in 5|repeat %}
+                            <td class="schedule-preview__period" id="td-p5-d{{ forloop.counter }}"><button
+                                    id="btn-p5-d{{ forloop.counter }}" class="period-btn" type="button"
+                                    data-bs-toggle="modal" data-bs-target="#specifyPeriodModal"
+                                    onclick="window.prepare_modal(5, {{ forloop.counter }})">
+                                    <p id="default-p5-d{{ forloop.counter }}">5. Time</p>
+                                </button></td>
+                            {% endfor %}
+                        </tr>
+                        <tr class="schedule-preview__second-row" id="row-6">
+                            <td class="text-center">12:45-13:30</td>
+                            {% for i in 5|repeat %}
+                            <td class="schedule-preview__period" id="td-p6-d{{ forloop.counter }}"><button
+                                    id="btn-p6-d{{ forloop.counter }}" class="period-btn" type="button"
+                                    data-bs-toggle="modal" data-bs-target="#specifyPeriodModal"
+                                    onclick="window.prepare_modal(6, {{ forloop.counter }})">
+                                    <p id="default-p6-d{{ forloop.counter }}">6. Time</p>
+                                </button></td>
+                            {% endfor %}
+                        </tr>
+                        <tr class="schedule-preview__recess-row">
+                            <td class="text-center">13:30-13:40</td>
+                            <td class="schedule-preview__recess-cell" colspan="5">Pause</td>
+                        </tr>
+                        <tr class="schedule-preview__first-row" id="row-7">
+                            <td class="text-center">13:40-14:25</td>
+                            {% for i in 5|repeat %}
+                            <td class="schedule-preview__period" id="td-p7-d{{ forloop.counter }}"><button
+                                    id="btn-p7-d{{ forloop.counter }}" class="period-btn" type="button"
+                                    data-bs-toggle="modal" data-bs-target="#specifyPeriodModal"
+                                    onclick="window.prepare_modal(7, {{ forloop.counter }})">
+                                    <p id="default-p7-d{{ forloop.counter }}">7. Time</p>
+                                </button></td>
+                            {% endfor %}
+                        </tr>
+                        <tr class="schedule-preview__second-row" id="row-8">
+                            <td class="text-center">14:25-15:10</td>
+                            {% for i in 5|repeat %}
+                            <td class="schedule-preview__period" id="td-p8-d{{ forloop.counter }}"><button
+                                    id="btn-p8-d{{ forloop.counter }}" class="period-btn" type="button"
+                                    data-bs-toggle="modal" data-bs-target="#specifyPeriodModal"
+                                    onclick="window.prepare_modal(8, {{ forloop.counter }})">
+                                    <p id="default-p8-d{{ forloop.counter }}">8. Time</p>
+                                </button></td>
+                            {% endfor %}
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
-
     <div class="modal fade" id="specifyPeriodModal">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -193,7 +243,6 @@
                     <h1 class="modal-title fs-5">Fag, rom og detaljer</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <input type="hidden" id="modal-active-period">
                 <div class="modal-body" id="specifyPeriodModalContent">
                     <div class="form-check form-switch" id="modal-double-period-form">
                         <input type="checkbox" role="switch" class="form-check-input" id="period-is-double">
@@ -201,7 +250,10 @@
                     </div>
                     <div class="form-floating">
                         <input type="text" class="form-control" id="modal-room-input">
-                        <label for="modal_room_input">Rom</label>
+                        <label for="modal_room_input"><span class="fa fa-solid fa-door-open"></span> Rom</label>
+                    </div>
+                    <div>
+                        <h5 class="h5 mt-2"><i class="pe-2 fa fa-solid fa-book"></i>Fag:</h5>
                     </div>
                     <div id="modal-course-container"></div>
                     <button class="btn btn-primary" id="modal-update-schedule-btn">Oppdater</button>

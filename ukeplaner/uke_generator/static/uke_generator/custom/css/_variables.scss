@@ -2,29 +2,269 @@
 
 $recess: #d3d3d3;
 
+$text-dark: #333333;
+$text-light: #e6e6e6;
+
+// dreamscape
+$dreamscape-sage: (
+    "bg": #c9cca1,
+    "text": $text-dark
+);
+$dreamscape-mustard: (
+    "bg": #caa05a,
+    "text": #333333
+);
+$dreamscape-rust: (
+    "bg": #ae6a47,
+    "text": #e6e6e6
+);
+$dreamscape-brick: (
+    "bg": #8b4048,
+    "text": "e6e6e6"
+);
+$dreamscape-smoky: (
+    "bg": #543344,
+    "text": #e6e6e6
+);
+$dreamscape-slate: (
+    "bg": #515262,
+    "text": #e6e6e6
+);
+$dreamscape-slate: (
+    "bg": #63787d,
+    "text": #e6e6e6
+);
+$dreamscape-sea-foam: (
+    "bg": #8ea091,
+    "text": #333333
+);
+
 $dreamscape: (
-    "sage": #c9cca1,
-    "mustard": #caa05a,
-    "rust": #ae6a47,
-    "brick": #8b4048,
-    "smoky": #543344,
-    "slate": #515262,
-    "dusty": #63787d,
-    "sea-foam": #8ea091,
+    "sage": $dreamscape-sage,
+    "mustard": $dreamscape-mustard,
+    "rust": $dreamscape-rust,
+    "brick": $dreamscape-brick,
+    "smoky": $dreamscape-smoky,
+    "slate": $dreamscape-slate,
+    "dusty": $dreamscape-slate,
+    "sea-foam": $dreamscape-sea-foam,
+);
+
+// retrocal
+$retrocal-mintleaf: (
+    "bg": #6eb8a8,
+    "text": #333333
+);
+
+$retrocal-forest: (
+    "bg": #2a584f,
+    "text": #e0e0e0
+);
+
+$retrocal-limeade: (
+    "bg": #74a33f,
+    "text": #333333
+);
+
+$retrocal-cream: (
+    "bg": #fcffc0,
+    "text": #333333
+);
+
+$retrocal-rosewood: (
+    "bg": #c6505a,
+    "text": #e0e0e0
+);
+
+$retrocal-plum: (
+    "bg": #2f142f,
+    "text": #e0e0e0
+);
+
+$retrocal-brick: (
+    "bg": #774448,
+    "text": #e0e0e0
+);
+
+$retrocal-apricot: (
+    "bg": #ee9c5d,
+    "text": #333333
 );
 
 $retrocal: (
-    "teal": #6eb8a8,
-    "forest": #2a584f,
-    "lime": #74a33f,
-    "lemon": #fcffc0,
-    "raspberry": #c6505a,
-    "eggplant": #2f142f,
-    "earth": #774448,
-    "tangerine": #ee9c5d
+    "mintleaf": $retrocal-mintleaf,
+    "forest": $retrocal-forest,
+    "limeade": $retrocal-limeade,
+    "cream": $retrocal-cream,
+    "rosewood": $retrocal-rosewood,
+    "plum": $retrocal-plum,
+    "brick": $retrocal-brick,
+    "apricot": $retrocal-apricot
 );
 
+// pollen
+$pollen-mahogany: (
+    "bg": #73464c,
+    "text": #e0e0e0
+);
+
+$pollen-magenta: (
+    "bg": #ab5675,
+    "text": #e0e0e0
+);
+
+$pollen-coral: (
+    "bg": #ee6a7c,
+    "text": #333333
+);
+
+$pollen-salmon: (
+    "bg": #ffa7a5,
+    "text": #333333
+);
+
+$pollen-sunlight: (
+    "bg": #ffe07e,
+    "text": #333333
+);
+
+$pollen-peach: (
+    "bg": #ffe7d6,
+    "text": #333333
+);
+
+$pollen-mint: (
+    "bg": #72dcbb,
+    "text": #333333
+);
+
+$pollen-turquoise: (
+    "bg": #34acba,
+    "text": #e0e0e0
+);
+
+
+$pollen: (
+    "mahogany": $pollen-mahogany,
+    "magenta": $pollen-magenta,
+    "coral": $pollen-coral,
+    "salmon": $pollen-salmon,
+    "sunlight": $pollen-sunlight,
+    "peach": $pollen-peach,
+    "mint": $pollen-mint,
+    "turquoise": $pollen-turquoise
+);
+
+// odd feeling
+$odd_feeling-crimson: (
+    "bg": #900c3f,
+    "text": #e0e0e0
+);
+
+$odd_feeling-ruby: (
+    "bg": #e84a5f,
+    "text": #e0e0e0
+);
+
+$odd_feeling-sunset: (
+    "bg": #ff847c,
+    "text": #333333
+);
+
+$odd_feeling-flamingo: (
+    "bg": #fc9d9d,
+    "text": #333333
+);
+
+$odd_feeling-apricot: (
+    "bg": #feceab,
+    "text": #333333
+);
+
+$odd_feeling-taupe: (
+    "bg": #ccafaf,
+    "text": #333333
+);
+
+$odd_feeling-fern: (
+    "bg": #99b898,
+    "text": #333333
+);
+
+$odd_feeling-snow: (
+    "bg": #ffffff,
+    "text": #333333
+);
+
+$odd_feeling: (
+    "crimson": $odd_feeling-crimson,
+    "ruby": $odd_feeling-ruby,
+    "sunset": $odd_feeling-sunset,
+    "flamingo": $odd_feeling-flamingo,
+    "apricot": $odd_feeling-apricot,
+    "taupe": $odd_feeling-taupe,
+    "fern": $odd_feeling-fern,
+    "snow": $odd_feeling-snow
+);
+
+// funky future
+$funky_future-nightshade: (
+    "bg": #2b0f54,
+    "text": #e0e0e0
+);
+
+$funky_future-fuchsia: (
+    "bg": #ab1f65,
+    "text": #e0e0e0
+);
+
+$funky_future-cherry: (
+    "bg": #ff4f69,
+    "text": #e0e0e0
+);
+
+$funky_future-whisper: (
+    "bg": #fff7f8,
+    "text": #333333
+);
+
+$funky_future-tangerine: (
+    "bg": #ff8142,
+    "text": #333333
+);
+
+$funky_future-sunray: (
+    "bg": #ffda45,
+    "text": #333333
+);
+
+$funky_future-sapphire: (
+    "bg": #3368dc,
+    "text": #e0e0e0
+);
+
+$funky_future-aqua: (
+    "bg": #49e7ec,
+    "text": #333333
+);
+
+$funky_future: (
+    "nightshade": $funky_future-nightshade,
+    "fuchsia": $funky_future-fuchsia,
+    "cherry": $funky_future-cherry,
+    "whisper": $funky_future-whisper,
+    "tangerine": $funky_future-tangerine,
+    "sunray": $funky_future-sunray,
+    "sapphire": $funky_future-sapphire,
+    "aqua": $funky_future-aqua
+);
+
+
+
 $colors: (
-    "retrocal": $retrocal,
-    "dreamscape": $dreamscape
+    "dreamscape": $dreamscape,
+    "pollen": $pollen,
+    "odd_feeling": $odd_feeling,
+    "funky_future": $funky_future,
+    "retrocal": $retrocal
 );

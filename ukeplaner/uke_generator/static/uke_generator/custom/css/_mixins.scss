@@ -1,0 +1,16 @@
+// Mixin with gradient text background for a palette using each of the palettes colors
+@mixin gradient-text($palette) {
+    $gradient-list: ();
+
+    // Iterate over each color in the palette to build the gradient list
+    @each $color-name, $color-values in $palette {
+        $bg-color: map-get($color-values, "bg");
+        $gradient-list: append($gradient-list, $bg-color, comma);
+    }
+
+    background-image: linear-gradient(to bottom right, $gradient-list...);
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text; // For Webkit browsers
+    -webkit-text-fill-color: transparent; // For Webkit browsers
+}

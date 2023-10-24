@@ -13,15 +13,32 @@ export class Schedule {
         for (let i = 0; i < 5; i++) {
             var day = [];
             for (let j = 0; j < 8; j++) {
-                day.push({teacher: "", subject: "", room: "", color: "", double: false});
+                day.push({ teacher: "", subject: "", room: "", color: "", double: false });
             }
             this.schedule.push(day);
         }
         // variable used to prepare a period for change, keeps track of where modal was opened from
-        this.prepared_period = {day: "", period: ""};
-        
+        this.prepared_period = { day: "", period: "" };
+
         this.text_order = ["subject", "teacher", "room"];
 
+        this.bold = {
+            teacher: false,
+            subject: false,
+            room: false
+        }
+
+        this.italic = {
+            teacher: false,
+            subject: false,
+            room: false
+        }
+
+        this.sizes = {
+            teacher: 12,
+            subject: 12,
+            room: 12
+        }
     }
 
     set_text_order(order) {
@@ -29,12 +46,12 @@ export class Schedule {
     }
 
     prepare_period(day, period) {
-        this.prepared_period.day = day-1;
-        this.prepared_period.period = period-1;
+        this.prepared_period.day = day - 1;
+        this.prepared_period.period = period - 1;
     }
 
     get_prepared_period() {
-        return {day: this.prepared_period.day +1, period: this.prepared_period.period +1}
+        return { day: this.prepared_period.day + 1, period: this.prepared_period.period + 1 }
     }
 
     set_course(course) {
@@ -75,14 +92,18 @@ export class Schedule {
     }
 
     set_period(day, period, period_info) {
-        this.schedule[day-1][period-1] = period_info;
+        this.schedule[day - 1][period - 1] = period_info;
     }
 
     get_period(day, period) {
-        return this.schedule[day-1][period-1]
+        return this.schedule[day - 1][period - 1]
     }
 
     get_schedule() {
         return this.schedule
+    }
+
+    set_double(day, period, is_double) {
+        this.schedule[day - 1][period - 1].double = is_double;
     }
 }
