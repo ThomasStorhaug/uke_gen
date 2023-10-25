@@ -41,7 +41,7 @@ $(document).ready(function () {
 
         for (let subject of subjects) {
             // Input group setup
-
+            console.log(`ading text input with id teacher-input-${subject}`)
             var txt_input = $("<input></input>").addClass("form-control").attr("id", `teacher-input-${subject}`).attr("name", `teacher-input-${subject}`).attr("type", "text");
             txt_input.change(function () {
                 $(`#teacher-input-${subject}`).addClass("is-valid");
@@ -84,12 +84,15 @@ $(document).ready(function () {
 
         modal_container.empty();
 
-        console.log(current_period.double)
-
         if (!current_period.double) {
             $("#period-is-double").prop("checked", false);
         } else {
             $("#period-is-double").prop("checked", true);
+        }
+
+        // Check if course is chosen and alert if not
+        if ($("#modal-alert")) {
+            $("#modal-alert").remove();
         }
 
         if (!schedule.course_is_chosen) {
@@ -98,22 +101,20 @@ $(document).ready(function () {
             $("#modal-update-schedule-btn").attr("disabled", true);
 
             let alert = $("<div></div>").addClass("alert alert-danger").attr("role", "alert").attr("id", "modal-alert").text("Du må velge linje først!");
-
             $("#modal-double-period-form").before(alert);
 
         } else {
             $("#period-is-double").removeAttr("disabled");
             $("#modal-room-input").removeAttr("disabled");
             $("#modal-update-schedule-btn").removeAttr("disabled");
-
-            if ($("#modal-alert")) {
-                $("#modal-alert").remove();
-            }
         }
 
         for (let subj of subjects) {
             let new_inp = $("<input>");
             new_inp.attr({ type: "radio", "id": `modal-subject-${subj}`, name: "modal-subject-select", value: subj }).addClass("btn-check");
+            new_inp.click(function() {
+                updateAll();
+            })
             if (subj == current_period.subject) {
                 new_inp.attr("checked", true);
             }
@@ -132,14 +133,13 @@ $(document).ready(function () {
 
         schedule.set_course(course);
         populateTeacherInput();
+
     }
 
     function updateTeachers() {
         for (let inp_grp of $("#teacher-container .input-group")) {
             let subj = inp_grp.id.split("-")[0];
             let teacher = $(`#teacher-input-${subj}`).val();
-            console.log($(`#teacher-input-${subj}`).val())
-            console.log(`setting ${teacher} as teacher for ${subj}`)
             setTeacher(subj, teacher);
         }
     }
@@ -199,7 +199,6 @@ $(document).ready(function () {
         let order = schedule.text_order;
         // Get the period info from the schedule object
         let period_info = schedule.get_period(day, period);
-        var prepared_period = schedule.get_prepared_period();
 
         var names = {
             subject: "Fag",
@@ -207,12 +206,11 @@ $(document).ready(function () {
             room: "Rom"
         }
 
-        let table_btn = $(`#btn-p${prepared_period.period}-d${prepared_period.day}`);
+        let table_btn = $(`#btn-p${period}-d${day}`);
 
         table_btn.empty();
 
         for (let item of order) {
-            console.log(`adding in ${item}`)
             if (period_info[item] == "") {
                 var text = names[item];
             } else {
@@ -256,8 +254,6 @@ $(document).ready(function () {
 
     // Break up periods
     function separatePeriods(period, day) {
-        console.log(`Trying to separate cells, called with parameters: day ${day}, period ${period}`)
-        console.log(`The prepared period is: day ${schedule.get_prepared_period().day}, period ${schedule.get_prepared_period().period}`)
         if ($(`#row-${period}`).hasClass("schedule-preview__first-row")) {
             var row_num = 1;
         } else {
@@ -291,11 +287,16 @@ $(document).ready(function () {
         } else {
             table_inf.forEach(function (day, i) {
                 day.forEach(function (_, j) {
-                    updatePeriodText(j, i);
+                    updatePeriodText(j + 1, i + 1);
                 });
             })
         }
         // add color based on subject
+    }
+
+    function updateAll() {
+        updateSchedule();
+        updateTable(true);
     }
 
     function debug(string) {
@@ -314,7 +315,20 @@ $(document).ready(function () {
         setSelectedCourse(course_select.options[course_select.selectedIndex].value);
     });
 
-    $("#sortable-text-order").sortable();
+    // Update schedule and table when interacting with modal and menu
+    $("#modal-room-input").change(function() {
+        updateAll();
+    });
+
+
+
+    $("#sortable-text-order").sortable({update: function(event, ui) {
+            updateSortOrder();
+            updateAll();
+        },
+        handle: ".handle",
+        cursor: "move"
+    });
     for (let item of ["subject", "teacher", "room"]) {
         $(`#text-size-input-${item}`).change(function () {
             $(`#text-size-${item}`).text($(`#text-size-input-${item}`).val());
@@ -333,8 +347,11 @@ $(document).ready(function () {
         } else {
             separatePeriods(period.period, period.day);
         }
-    })
+        updateAll();
+    });
+
 
     window.set_selected_course = setSelectedCourse;
     window.prepare_modal = prepareModal;
+    window.update_all = updateAll;
 });
