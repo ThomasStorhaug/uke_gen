@@ -3,10 +3,10 @@ export class Schedule {
         this.course_data = course_data;
         this.course = "";
         this.course_is_chosen = false;
-        this.available_subjects = this.course_data["Fellesfag vg1"] // array
+        this.available_subjects = this.course_data["Fellesfag vg1"] // subject: {name: "name", id: "id"}
         this.teachers = {};
         for (let subject of this.available_subjects) {
-            this.teachers[subject] = "";
+            this.teachers[subject.name] = "";
         }
         // schedule = [day1, day2, ...]; day = [period1, period2, ...]
         this.schedule = []
@@ -80,11 +80,7 @@ export class Schedule {
     }
 
     set_teacher(subject, teacher) {
-        if (this.available_subjects.includes(subject)) {
-            this.teachers[subject] = teacher;
-        } else {
-            console.log("Error: Trying to set a teacher in a subject not in course!")
-        }
+        this.teachers[subject] = teacher;
     }
 
     get_available_subjects() {

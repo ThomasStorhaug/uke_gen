@@ -41,16 +41,15 @@ $(document).ready(function () {
 
         for (let subject of subjects) {
             // Input group setup
-            console.log(`ading text input with id teacher-input-${subject}`)
-            var txt_input = $("<input></input>").addClass("form-control").attr("id", `teacher-input-${subject}`).attr("name", `teacher-input-${subject}`).attr("type", "text");
+            var txt_input = $("<input></input>").addClass("form-control").attr("id", `teacher-input-${subject.id}`).attr("name", `teacher-input-${subject.id}`).attr("type", "text");
             txt_input.change(function () {
-                $(`#teacher-input-${subject}`).addClass("is-valid");
+                $(`#teacher-input-${subject.id}`).addClass("is-valid");
                 updateTeachers();
             }).focus(function () {
-                $(`#teacher-input-${subject}`).removeClass("is-valid");
+                $(`#teacher-input-${subject.id}`).removeClass("is-valid");
             });
 
-            let label = $("<label></label>").attr("for", `teacher-input-${subject}`).text(`${subject}:`);
+            let label = $("<label></label>").attr("for", `teacher-input-${subject.id}`).text(`${subject.name}:`);
 
             input_container.append(label).append(txt_input);
         }
@@ -111,15 +110,15 @@ $(document).ready(function () {
 
         for (let subj of subjects) {
             let new_inp = $("<input>");
-            new_inp.attr({ type: "radio", "id": `modal-subject-${subj}`, name: "modal-subject-select", value: subj }).addClass("btn-check");
+            new_inp.attr({ type: "radio", "id": `modal-subject-${subj.id}`, name: "modal-subject-select", value: subj.name }).addClass("btn-check");
             new_inp.click(function() {
                 updateAll();
             })
-            if (subj == current_period.subject) {
+            if (subj.name == current_period.subject) {
                 new_inp.attr("checked", true);
             }
 
-            let new_lbl = $("<label></label>").attr("for", `modal-subject-${subj}`).addClass("btn").text(subj);
+            let new_lbl = $("<label></label>").attr("for", `modal-subject-${subj.id}`).addClass("btn").text(subj.name);
 
             modal_container.append(new_inp).append(new_lbl);
 
@@ -137,10 +136,12 @@ $(document).ready(function () {
     }
 
     function updateTeachers() {
-        for (let inp_grp of $("#teacher-container .input-group")) {
-            let subj = inp_grp.id.split("-")[0];
-            let teacher = $(`#teacher-input-${subj}`).val();
-            setTeacher(subj, teacher);
+        for (let inp of $("#teacher-container input")) {
+            let subject = $(`label[for='${inp.id}']`).text();
+            console.log(`Found subject as ${subject}`);
+            let teacher = inp.value;
+            console.log(`And teacher as ${teacher}`);
+            setTeacher(subject, teacher)
         }
     }
 

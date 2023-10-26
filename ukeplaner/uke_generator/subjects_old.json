@@ -1,0 +1,39 @@
+{
+    "Fellesfag vg1": [
+        "Engelsk",
+        "Kroppsøving",
+        "Matematikk",
+        "Naturfag"
+    ],
+    "Teknologi- og industrifag vg1": [
+        "Konstruksjons- og styringsteknikk",
+        "Produktivitet- og kvalitetsstyring",
+        "Produksjon og tjenester",
+        "Yrkesfaglig fordypning"
+    ],
+    "Bygg- og anleggsteknikk vg1": [
+        "Arbeidsmiljø og dokumentasjon",
+        "Praktisk yrkesutøvelse"
+    ],
+    "Elektro og datateknologi vg1": [
+        "Elektroniske kretser og nettverk",
+        "Energi- og styresystemer",
+        "Yrkesfaglig fordypning"
+    ],
+    "Frisør, blomster, interiør og eksponeringsdesign vg1": [
+        "Kommunikasjon, kunde og arbeidsliv",
+        "Produktutvikling og produksjon",
+        "Yrkesfaglig fordypning"
+    ],
+    "Håndverk, design og produktutvikling vg1": [
+        "Materialer og teknikker",
+        "Produktutvikling og skapende prosesser",
+        "Yrkesfaglig fordypning"
+    ],
+    "Salg, service og reiseliv vg1": [
+        "Forretningsdrift",
+        "Kultur og samhandling",
+        "Markedsføring og innovasjon",
+        "Yrkesfaglig fordypning"
+    ]
+}

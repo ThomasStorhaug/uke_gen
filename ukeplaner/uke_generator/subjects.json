@@ -1,39 +1,39 @@
 {
     "Fellesfag vg1": [
-        "Engelsk",
-        "Kroppsøving",
-        "Matematikk",
-        "Naturfag"
+        {"name": "Engelsk", "id": "engelsk"},
+        {"name": "Kroppsøving", "id": "kroppsøving"},
+        {"name": "Matematikk", "id": "matematikk"},
+        {"name": "Naturfag", "id": "naturfag"}
     ],
     "Teknologi- og industrifag vg1": [
-        "Konstruksjons- og styringsteknikk",
-        "Produktivitet- og kvalitetsstyring",
-        "Produksjon og tjenester",
-        "Yrkesfaglig fordypning"
+        {"name": "Konstruksjons- og styringsteknikk", "id": "konstruksjons_og_styringsteknikk"},
+        {"name": "Produktivitet- og kvalitetsstyring", "id": "produktivitet_og_kvalitetsstyring"},
+        {"name": "Produksjon og tjenester", "id": "produksjon_og_tjenester"},
+        {"name": "Yrkesfaglig fordypning", "id": "yrkesfaglig_fordypning"}
     ],
     "Bygg- og anleggsteknikk vg1": [
-        "Arbeidsmiljø og dokumentasjon",
-        "Praktisk yrkesutøvelse"
+        {"name": "Arbeidsmiljø og dokumentasjon", "id": "arbeidsmiljø_og_dokumentasjon"},
+        {"name": "Praktisk yrkesutøvelse", "id": "praktisk_yrkesutøvelse"}
     ],
     "Elektro og datateknologi vg1": [
-        "Elektroniske kretser og nettverk",
-        "Energi- og styresystemer",
-        "Yrkesfaglig fordypning"
+        {"name": "Elektroniske kretser og nettverk", "id": "elektroniske_kretser_og_nettverk"},
+        {"name": "Energi- og styresystemer", "id": "energi_og_styresystemer"},
+        {"name": "Yrkesfaglig fordypning", "id": "yrkesfaglig_fordypning"}
     ],
     "Frisør, blomster, interiør og eksponeringsdesign vg1": [
-        "Kommunikasjon, kunde og arbeidsliv",
-        "Produktutvikling og produksjon",
-        "Yrkesfaglig fordypning"
+        {"name": "Kommunikasjon, kunde og arbeidsliv", "id": "kommunikasjon_kunde_og_arbeidsliv"},
+        {"name": "Produktutvikling og produksjon", "id": "produktutvikling_og_produksjon"},
+        {"name": "Yrkesfaglig fordypning", "id": "yrkesfaglig_fordypning"}
     ],
     "Håndverk, design og produktutvikling vg1": [
-        "Materialer og teknikker",
-        "Produktutvikling og skapende prosesser",
-        "Yrkesfaglig fordypning"
+        {"name": "Materialer og teknikker", "id": "materialer_og_teknikker"},
+        {"name": "Produktutvikling og skapende prosesser", "id": "produktutvikling_og_skapende_prosesser"},
+        {"name": "Yrkesfaglig fordypning", "id": "yrkesfaglig_fordypning"}
     ],
     "Salg, service og reiseliv vg1": [
-        "Forretningsdrift",
-        "Kultur og samhandling",
-        "Markedsføring og innovasjon",
-        "Yrkesfaglig fordypning"
+        {"name": "Forretningsdrift", "id": "forretningsdrift"},
+        {"name": "Kultur og samhandling", "id": "kultur_og_samhandling"},
+        {"name": "Markedsføring og innovasjon", "id": "markedsføring_og_innovasjon"},
+        {"name": "Yrkesfaglig fordypning", "id": "yrkesfaglig_fordypning"}
     ]
 }
